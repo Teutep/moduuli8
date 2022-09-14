@@ -1,3 +1,4 @@
+import geopy.distance
 import mysql.connector
 yhteys = mysql.connector.connect(
     host='127.0.0.1',
@@ -11,8 +12,7 @@ yhteys = mysql.connector.connect(
 from geopy import distance
 
 def getairport_distance(icao):
-    sql = "SELECT latitude_deg, longitude_deg FROM airport"
-    sql += " WHERE ident='" + icao + "'"
+    sql = "SELECT latitude_deg, longitude_deg FROM airport WHERE ident='" + icao + "'"
     cursor = yhteys.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
